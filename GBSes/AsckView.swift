@@ -24,7 +24,7 @@ struct Webview: UIViewRepresentable
     
     func makeUIView(context: Context) -> WKWebView
     {
-        print("maked UI")
+        print("Made UI")
         let preferences = WKPreferences()
             preferences.javaScriptCanOpenWindowsAutomatically = true
         
@@ -54,6 +54,7 @@ struct Webview: UIViewRepresentable
         }
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+            print("Allow loading")
                 decisionHandler(.allow)
         }
 
@@ -65,24 +66,21 @@ struct Webview: UIViewRepresentable
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             print("Finish loading")
             let currentURL = webView.url?.absoluteString
-            switch currentURL
+            if(currentURL == "https://hcs.eduro.go.kr/#/relogin")
             {
-            case "https://hcs.eduro.go.kr/#/relogin",
-                "https://hcs.eduro.go.kr/#/loginWithUserInfo":
                 webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"1102\")")
                 webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-               
-            case "https://hcs.eduro.go.kr/#/main":
-                webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
-                
-            case "https://hcs.eduro.go.kr/#/survey":
-                webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
-                webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
-                webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
-                webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-                
-            default:
-                print("Swift는 귀찮게도 switch문에 default를 요구합니다.")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
+                    print("1")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
+                        webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
+                        webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
+                        webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
+                        print("2")
+                    }
+                }
             }
         }
     }

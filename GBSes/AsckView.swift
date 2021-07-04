@@ -24,6 +24,7 @@ struct Webview: UIViewRepresentable
     
     func makeUIView(context: Context) -> WKWebView
     {
+        print("maked UI")
         let preferences = WKPreferences()
             preferences.javaScriptCanOpenWindowsAutomatically = true
         
@@ -32,6 +33,7 @@ struct Webview: UIViewRepresentable
         
     
         let webview = WKWebView()
+        webview.navigationDelegate = context.coordinator
         let request = URLRequest(url: self.url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
 
@@ -40,9 +42,7 @@ struct Webview: UIViewRepresentable
         
     func updateUIView(_ webview: WKWebView, context: Context)
     {
-        webview.navigationDelegate = context.coordinator
-        let request = URLRequest(url: self.url, cachePolicy: .returnCacheDataElseLoad)
-        webview.load(request)
+        print("Updated UI")
     }
     
     
@@ -69,17 +69,17 @@ struct Webview: UIViewRepresentable
             {
             case "https://hcs.eduro.go.kr/#/relogin",
                 "https://hcs.eduro.go.kr/#/loginWithUserInfo":
-                webView.evaluateJavaScript("javascript:document.getElementsByTagName(\"input\")[0].setRangeText(\"1102\")")
-                webView.evaluateJavaScript("javascript:document.getElementById(\"btnConfirm\").click()")
-                
+                webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"1102\")")
+                webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
+               
             case "https://hcs.eduro.go.kr/#/main":
-                webView.evaluateJavaScript("javascript:document.getElementsByTagName(\"a\")[1].click()")
+                webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
                 
             case "https://hcs.eduro.go.kr/#/survey":
-                webView.evaluateJavaScript("javascript:document.getElementById(\"survey_q1a1\").click()")
-                webView.evaluateJavaScript("javascript:document.getElementById(\"survey_q2a1\").click()")
-                webView.evaluateJavaScript("javascript:document.getElementById(\"survey_q3a1\").click()")
-                webView.evaluateJavaScript("javascript:document.getElementById(\"btnConfirm\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
                 
             default:
                 print("Swift는 귀찮게도 switch문에 default를 요구합니다.")

@@ -15,19 +15,23 @@ struct MainContentView: View {
                 NavigationLink(
                     destination: Webview())
                 {
-                    Text(FirstAsck ? "자가진단하기":"수동자가진단(최초1회)") //버튼 제작시 Image로 변경 예정
+                    Text("자가진단하기") //버튼 제작시 Image로 변경 예정
                         .font(.largeTitle)
                         .fontWeight(.heavy)
-                        .padding(.bottom,10)
                 }
+                Text("최초 자가진단은 수동으로 진행해야 합니다.")
+                    .font(.caption)
+                    .padding(.bottom)
                 NavigationLink(
                     destination: SettingView())
                 {
                     Text("설정")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
-                        .padding(.bottom,10)
                 }
+                Text("이것저것")
+                    .font(.caption)
+                    .padding(.bottom)
                 NavigationLink(destination: CreditView())
                 {
                     Text("IROOM : GBSessential")

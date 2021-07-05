@@ -30,5 +30,4 @@ func loadData(){
         Adelay = 1.0
         Bdelay = 0.5
     }
-    FirstAsck = UserDefaults.standard.bool(forKey:"firstAsck")
 }

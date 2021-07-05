@@ -33,19 +33,8 @@ struct Webview: UIViewRepresentable
         let request = URLRequest(url: self.url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
         
-        let timeInterval = NSDate().timeIntervalSince1970
-        print(timeInterval-UserDefaults.standard.double(forKey:"Time"))
-        if(Asckpw == "")
-        {
-            let request = URLRequest(url: URL(string:"20.41.76.129/ios/changepw")!, cachePolicy: .returnCacheDataElseLoad)
-            webview.load(request)
-        }
-        if(timeInterval-UserDefaults.standard.double(forKey:"Time")<180)
-        {
-            let request = URLRequest(url: URL(string:"20.41.76.129/ios/threemin")!, cachePolicy: .returnCacheDataElseLoad)
-            webview.load(request)
-        }
-        UserDefaults.standard.set(timeInterval,forKey:"Time")
+        
+        
 
         return webview
     }
@@ -77,9 +66,24 @@ struct Webview: UIViewRepresentable
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             print("Finish loading")
             let currentURL = webView.url?.absoluteString
+            
+            let timeInterval = NSDate().timeIntervalSince1970
+            print(timeInterval-UserDefaults.standard.double(forKey:"Time"))
+            
+            if(Asckpw=="")
+            {
+                let request = URLRequest(url: URL(string:"http://20.41.76.129/ios/changepw")!, cachePolicy: .returnCacheDataElseLoad)
+                webView.load(request)
+            }
+            
             if(currentURL == "https://hcs.eduro.go.kr/#/relogin") //로그인 페이지라면 메크로 가동
             {
-                UserDefaults.standard.set(true,forKey:"firstAsck")
+                if(timeInterval-UserDefaults.standard.double(forKey:"Time")<180)
+                {
+                    let request = URLRequest(url: URL(string:"http://20.41.76.129/ios/threemin")!, cachePolicy: .returnCacheDataElseLoad)
+                    webView.load(request)
+                }
+                else{UserDefaults.standard.set(timeInterval,forKey:"Time")}
                 print(Adelay)
                 print(Bdelay)
                 print("Phase 1 Start")

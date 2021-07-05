@@ -8,18 +8,9 @@
 import SwiftUI
 import WebKit
 
-struct AsckContentView: View {
-    @State var showingAlert: Bool
-    var body: some View {
-        Webview(url: URL(string:"https://hcs.eduro.go.kr/#/loginHome")!)
-    }
-}
-
-
-
 struct Webview: UIViewRepresentable
 { //자가진단 사이트 띄우는 WebView
-    var url:URL
+    let url:URL = URL(string:"https://hcs.eduro.go.kr/#/loginHome")!
 
     
     func makeCoordinator() -> Coordinator {
@@ -41,6 +32,15 @@ struct Webview: UIViewRepresentable
         webview.navigationDelegate = context.coordinator
         let request = URLRequest(url: self.url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
+        
+        let timeInterval = NSDate().timeIntervalSince1970
+        print(timeInterval-UserDefaults.standard.double(forKey:"Time"))
+        if(timeInterval-UserDefaults.standard.double(forKey:"Time")<180)
+        {
+            let request = URLRequest(url: URL(string:"20.41.76.129/ios/threemin")!, cachePolicy: .returnCacheDataElseLoad)
+            webview.load(request)
+        }
+        UserDefaults.standard.set(timeInterval,forKey:"Time")
 
         return webview
     }
@@ -94,7 +94,7 @@ struct Webview: UIViewRepresentable
             }
             else //로그인 페이지 아니면 수동으로 해달라는 알람을 띄움
             {
-                
+    
             }
         }
     }

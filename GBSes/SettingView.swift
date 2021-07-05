@@ -12,6 +12,7 @@ import SwiftUI
 struct SettingView: View {
     @State var UserInput:String = Asckpw
     @State var SlowInput:Bool = SlowMode
+    let timeInterval = NSDate().timeIntervalSince1970
     var body: some View
     {
         VStack(alignment: .leading){
@@ -25,6 +26,7 @@ struct SettingView: View {
                     Asckpw = UserInput
                 })
             }.onAppear(){UserInput = Asckpw}.padding(.horizontal)
+            Text("비밀번호 입력 후 엔터키를 눌러주세요").font(.caption2).padding(.horizontal)
             
             Toggle(isOn:$SlowInput)
             {

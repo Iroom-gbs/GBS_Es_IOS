@@ -19,6 +19,13 @@ struct MainContentView: View {
                         .font(.largeTitle)
                         .padding(.bottom,10)
                 }
+                NavigationLink(
+                    destination: SettingView())
+                {
+                    Text("설정")
+                        .font(.largeTitle)
+                        .padding(.bottom,10)
+                }
                 Text("IROOM : GBSessential")
                     .padding(.bottom, 0.0)
                     .font(.title)

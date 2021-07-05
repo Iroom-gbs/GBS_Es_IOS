@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EAF168DE268C6D1D00A73BA3 /* AsckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF168DD268C6D1D00A73BA3 /* AsckView.swift */; };
 		EAF168E0268C914500A73BA3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF168DF268C914500A73BA3 /* DataManager.swift */; };
+		EAFAF5762692815E001EA7CF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFAF5752692815E001EA7CF /* SettingView.swift */; };
 		EAFFC42A268AE30600528E91 /* GBSesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFC429268AE30600528E91 /* GBSesApp.swift */; };
 		EAFFC42C268AE30600528E91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFC42B268AE30600528E91 /* MainView.swift */; };
 		EAFFC42E268AE30600528E91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFFC42D268AE30600528E91 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		EAF168DD268C6D1D00A73BA3 /* AsckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsckView.swift; sourceTree = "<group>"; };
 		EAF168DF268C914500A73BA3 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		EAFAF5752692815E001EA7CF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		EAFFC426268AE30600528E91 /* GBSes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBSes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFFC429268AE30600528E91 /* GBSesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBSesApp.swift; sourceTree = "<group>"; };
 		EAFFC42B268AE30600528E91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -101,11 +103,12 @@
 			children = (
 				EAFFC42B268AE30600528E91 /* MainView.swift */,
 				EAF168DD268C6D1D00A73BA3 /* AsckView.swift */,
+				EAFAF5752692815E001EA7CF /* SettingView.swift */,
 				EAF168DF268C914500A73BA3 /* DataManager.swift */,
 				EAFFC429268AE30600528E91 /* GBSesApp.swift */,
-				EAFFC42D268AE30600528E91 /* Assets.xcassets */,
 				EAFFC432268AE30600528E91 /* Info.plist */,
 				EAFFC42F268AE30600528E91 /* Preview Content */,
+				EAFFC42D268AE30600528E91 /* Assets.xcassets */,
 			);
 			path = GBSes;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAFFC42C268AE30600528E91 /* MainView.swift in Sources */,
+				EAFAF5762692815E001EA7CF /* SettingView.swift in Sources */,
 				EAF168E0268C914500A73BA3 /* DataManager.swift in Sources */,
 				EAFFC42A268AE30600528E91 /* GBSesApp.swift in Sources */,
 				EAF168DE268C6D1D00A73BA3 /* AsckView.swift in Sources */,

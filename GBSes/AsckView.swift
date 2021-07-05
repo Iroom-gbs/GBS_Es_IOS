@@ -68,17 +68,19 @@ struct Webview: UIViewRepresentable
             let currentURL = webView.url?.absoluteString
             if(currentURL == "https://hcs.eduro.go.kr/#/relogin")
             {
-                webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"1102\")")
+                print("Phase 1 Start")
+                webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"\(Asckpw)\")")
                 webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
-                    print("1")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    print("Phase 1 Finsh")
+                    print("Phase 2 Start")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
                         webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
                         webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
                         webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-                        print("2")
+                        print("Phase 2 Finish")
                     }
                 }
             }

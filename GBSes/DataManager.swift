@@ -6,3 +6,5 @@
 //
 
 import Foundation
+
+var Asckpw = "1102" //자가진단 비밀번호

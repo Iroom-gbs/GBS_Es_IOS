@@ -35,6 +35,11 @@ struct Webview: UIViewRepresentable
         
         let timeInterval = NSDate().timeIntervalSince1970
         print(timeInterval-UserDefaults.standard.double(forKey:"Time"))
+        if(Asckpw == "")
+        {
+            let request = URLRequest(url: URL(string:"20.41.76.129/ios/changepw")!, cachePolicy: .returnCacheDataElseLoad)
+            webview.load(request)
+        }
         if(timeInterval-UserDefaults.standard.double(forKey:"Time")<180)
         {
             let request = URLRequest(url: URL(string:"20.41.76.129/ios/threemin")!, cachePolicy: .returnCacheDataElseLoad)
@@ -74,6 +79,7 @@ struct Webview: UIViewRepresentable
             let currentURL = webView.url?.absoluteString
             if(currentURL == "https://hcs.eduro.go.kr/#/relogin") //로그인 페이지라면 메크로 가동
             {
+                UserDefaults.standard.set(true,forKey:"firstAsck")
                 print(Adelay)
                 print(Bdelay)
                 print("Phase 1 Start")
@@ -91,10 +97,6 @@ struct Webview: UIViewRepresentable
                 print("Phase 2 Finish")
                     }
                 }
-            }
-            else //로그인 페이지 아니면 수동으로 해달라는 알람을 띄움
-            {
-    
             }
         }
     }

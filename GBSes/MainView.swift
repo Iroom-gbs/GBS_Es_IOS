@@ -15,7 +15,7 @@ struct MainContentView: View {
                 NavigationLink(
                     destination: Webview())
                 {
-                    Text("자가진단하기") //버튼 제작시 Image로 변경 예정
+                    Text(FirstAsck ? "자가진단하기":"수동자가진단(최초1회)") //버튼 제작시 Image로 변경 예정
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .padding(.bottom,10)

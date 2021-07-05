@@ -11,6 +11,7 @@ var Asckpw = ""
 var SlowMode = false
 var Adelay = 1.0
 var Bdelay = 0.5
+var FirstAsck = false
 
 func loadData(){
     if(!(UserDefaults.standard.string(forKey:"Asckpw")==nil))
@@ -29,4 +30,5 @@ func loadData(){
         Adelay = 1.0
         Bdelay = 0.5
     }
+    FirstAsck = UserDefaults.standard.bool(forKey:"firstAsck")
 }

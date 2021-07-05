@@ -29,6 +29,7 @@ struct Webview: UIViewRepresentable
     func makeUIView(context: Context) -> WKWebView
     {
         print("Made UI")
+        loadData()
         let preferences = WKPreferences()
             preferences.javaScriptCanOpenWindowsAutomatically = true
         
@@ -71,25 +72,27 @@ struct Webview: UIViewRepresentable
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             print("Finish loading")
             let currentURL = webView.url?.absoluteString
-            if(currentURL == "https://hcs.eduro.go.kr/#/relogin")
+            if(currentURL == "https://hcs.eduro.go.kr/#/relogin") //로그인 페이지라면 메크로 가동
             {
+                print(Adelay)
+                print(Bdelay)
                 print("Phase 1 Start")
                 webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"\(Asckpw)\")")
                 webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
                 DispatchQueue.main.asyncAfter(deadline: .now() + Adelay) {
-                    webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
-                    print("Phase 1 Finsh")
-                    print("Phase 2 Start")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Bdelay) {
-                        webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
-                        webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
-                        webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
-                        webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-                        print("Phase 2 Finish")
+                webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
+                print("Phase 1 Finsh")
+                print("Phase 2 Start")
+                DispatchQueue.main.asyncAfter(deadline: .now() + Bdelay) {
+                webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
+                webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
+                print("Phase 2 Finish")
                     }
                 }
             }
-            else
+            else //로그인 페이지 아니면 수동으로 해달라는 알람을 띄움
             {
                 
             }

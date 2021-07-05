@@ -8,6 +8,7 @@
 import Foundation
 
 var Asckpw = ""
+var SlowMode = false
 var Adelay = 1.0
 var Bdelay = 0.5
 
@@ -15,5 +16,17 @@ func loadData(){
     if(!(UserDefaults.standard.string(forKey:"Asckpw")==nil))
     {
         Asckpw = UserDefaults.standard.string(forKey:"Asckpw")!
+    }
+    SlowMode = !UserDefaults.standard.bool(forKey:"Slowmode")
+    
+    if(!SlowMode)
+    {
+        Adelay = 3.0
+        Bdelay = 2.0
+    }
+    else
+    {
+        Adelay = 1.0
+        Bdelay = 0.5
     }
 }

@@ -7,4 +7,13 @@
 
 import Foundation
 
-var Asckpw = "1102" //자가진단 비밀번호
+var Asckpw = ""
+var Adelay = 1.0
+var Bdelay = 0.5
+
+func loadData(){
+    if(!(UserDefaults.standard.string(forKey:"Asckpw")==nil))
+    {
+        Asckpw = UserDefaults.standard.string(forKey:"Asckpw")!
+    }
+}

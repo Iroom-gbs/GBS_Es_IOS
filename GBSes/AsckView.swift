@@ -9,14 +9,18 @@ import SwiftUI
 import WebKit
 
 struct AsckContentView: View {
+    @State var showingAlert: Bool
     var body: some View {
-            Webview(url: URL(string: "https://hcs.eduro.go.kr/#/loginHome")!)
+        Webview(url: URL(string:"https://hcs.eduro.go.kr/#/loginHome")!)
     }
 }
+
+
 
 struct Webview: UIViewRepresentable
 { //자가진단 사이트 띄우는 WebView
     var url:URL
+
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -48,6 +52,7 @@ struct Webview: UIViewRepresentable
     
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: Webview
+
         
         init(_ uiWebView:Webview) {
             self.parent = uiWebView
@@ -71,11 +76,11 @@ struct Webview: UIViewRepresentable
                 print("Phase 1 Start")
                 webView.evaluateJavaScript("document.getElementsByTagName(\"input\")[0].setRangeText(\"\(Asckpw)\")")
                 webView.evaluateJavaScript("document.getElementById(\"btnConfirm\").click()")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Adelay) {
                     webView.evaluateJavaScript("document.getElementsByTagName(\"a\")[1].click()")
                     print("Phase 1 Finsh")
                     print("Phase 2 Start")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Bdelay) {
                         webView.evaluateJavaScript("document.getElementById(\"survey_q1a1\").click()")
                         webView.evaluateJavaScript("document.getElementById(\"survey_q2a1\").click()")
                         webView.evaluateJavaScript("document.getElementById(\"survey_q3a1\").click()")
@@ -84,16 +89,11 @@ struct Webview: UIViewRepresentable
                     }
                 }
             }
+            else
+            {
+                
+            }
         }
     }
 }
 
-
-
-
-
-struct AsckView_Previews: PreviewProvider {
-    static var previews: some View {
-        Webview(url: URL(string: "https://hcs.eduro.go.kr/#/loginHome")!)
-    }
-}

@@ -7,9 +7,21 @@
 
 import SwiftUI
 
+
+
 struct SettingView: View {
+    @State var UserInput:String = Asckpw
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+        Text("자가진단 비밀번호: ")
+        TextField("비밀번호를 입력하세요",text: $UserInput, onCommit:
+                    {
+                        UserDefaults.standard.set(UserInput, forKey:"Asckpw")
+                        Asckpw = UserInput
+                    })
+        }.onAppear(){
+            UserInput = Asckpw
+        }.padding(.horizontal)
     }
 }
 

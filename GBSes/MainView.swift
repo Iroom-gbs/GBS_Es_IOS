@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct MainContentView: View {
+    
     var body: some View {
         NavigationView{
             VStack (alignment: .leading){
                 NavigationLink(
-                    destination: Webview(url: URL(string: "https://hcs.eduro.go.kr/#/loginHome")!))
+                    destination:Webview(url: URL(string:"https://hcs.eduro.go.kr/#/loginHome")!))
                 {
                     Text("자가진단하기") //버튼 제작시 Image로 변경 예정
                         .font(.largeTitle)
@@ -35,7 +36,7 @@ struct MainContentView: View {
             }
             .navigationTitle("")
             .navigationBarHidden(true)
-        }
+        }.onAppear(){loadData()}
     }
 }
 
